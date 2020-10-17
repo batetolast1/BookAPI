@@ -9,7 +9,8 @@ What you can do:
 - delete a book from database
 
 # Design patterns used:
-- DAO
+- Repository
+- DTO
 - REST API
 - MVC
 - JSON
