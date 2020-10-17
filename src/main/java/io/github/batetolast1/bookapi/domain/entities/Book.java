@@ -66,6 +66,7 @@ public class Book extends BaseEntity {
                 ", author='" + author + '\'' +
                 ", publisher='" + publisher + '\'' +
                 ", type='" + type + '\'' +
+                ", createdOn='" + getCreatedOn() + '\'' +
                 '}';
     }
 }
