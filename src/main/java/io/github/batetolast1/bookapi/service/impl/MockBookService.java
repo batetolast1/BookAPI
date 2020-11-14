@@ -19,17 +19,17 @@ public class MockBookService implements BookService {
 
     private final Logger log = LoggerFactory.getLogger(MockBookService.class);
 
-    private final BookDao bookRepository;
+    private final BookDao bookDao;
 
     @Autowired
-    public MockBookService(BookDao bookRepository) {
-        this.bookRepository = bookRepository;
+    public MockBookService(BookDao bookDao) {
+        this.bookDao = bookDao;
     }
 
     @Override
     public List<BookDTO> getAllBooks() {
         log.info("Converted all books to DTOs");
-        return bookRepository.findAll()
+        return bookDao.findAll()
                 .stream()
                 .map(BookMapper::toBookDTO)
                 .collect(Collectors.toList());
@@ -38,14 +38,14 @@ public class MockBookService implements BookService {
     @Override
     public BookDTO saveNewBook(BookDTO bookDTO) {
         log.info("BookDTO to save: {}", bookDTO);
-        Book savedBook = bookRepository.save(BookMapper.toBook(bookDTO));
+        Book savedBook = bookDao.save(BookMapper.toBook(bookDTO));
         return BookMapper.toBookDTO(savedBook);
     }
 
     @Override
     public BookDTO editBook(BookDTO bookDTO) {
         log.info("BookDTO to edit: {}", bookDTO);
-        Book editedBook = bookRepository.edit(BookMapper.toBook(bookDTO));
+        Book editedBook = bookDao.edit(BookMapper.toBook(bookDTO));
         if (editedBook == null) {
             log.debug("Book was not edited");
             return null;
@@ -57,7 +57,7 @@ public class MockBookService implements BookService {
     @Override
     public BookDTO getBookById(Long id) {
         log.info("Book id to find: {}", id);
-        Optional<Book> optionalBook = bookRepository.getById(id);
+        Optional<Book> optionalBook = bookDao.getById(id);
         if (optionalBook.isPresent()) {
             log.info("Book with id: {} is found", id);
             return BookMapper.toBookDTO(optionalBook.get());
@@ -69,7 +69,7 @@ public class MockBookService implements BookService {
     @Override
     public boolean deleteBookById(Long id) {
         log.info("Book id to delete: {}", id);
-        boolean isDeleted = bookRepository.deleteById(id);
+        boolean isDeleted = bookDao.deleteById(id);
         if (isDeleted) {
             log.info("Book with id: {} is deleted", id);
         } else {
