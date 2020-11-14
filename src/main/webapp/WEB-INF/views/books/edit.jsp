@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Add new book</title>
+    <title>Edit book</title>
 
     <c:import url="../fragments/head.jsp"/>
 
@@ -15,7 +15,7 @@
 
     <form:form modelAttribute="bookDTO">
         <fieldset>
-            <legend>New book data:</legend>
+            <legend>Edit book data:</legend>
             <form:hidden path="id"/>
 
             <form:label path="isbn">ISBN: </form:label>
@@ -38,7 +38,7 @@
             <form:input path="type"/>
             <form:errors path="type" cssClass="text-danger"/>
             <br/>
-            <input type="submit" value="Add"/>
+            <input type="submit" value="Edit"/>
         </fieldset>
     </form:form>
 </body>

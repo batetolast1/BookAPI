@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ public class ManageBookController {
     private final BookService bookService;
 
     @GetMapping("/all")
-    public String showBooks(Model model) {
+    public String displayAll(Model model) {
         List<BookDTO> bookDTOS = bookService.getAllBooks();
         model.addAttribute("bookDTOS", bookDTOS);
         return "books/all";
@@ -53,6 +54,28 @@ public class ManageBookController {
     @GetMapping("/delete")
     public String processDelete(@RequestParam(name = "id") Long id) {
         bookService.deleteBookById(id);
+        return "redirect:/admin/books/all";
+    }
+
+    @GetMapping("/edit")
+    public String displayEditForm(Model model, @RequestParam(name = "id") Long id) {
+        BookDTO bookDTO = bookService.getBookById(id);
+
+        if (bookDTO != null) {
+            model.addAttribute("bookDTO", bookDTO);
+            return "books/edit";
+        }
+
+        return "redirect:/admin/books/all";
+    }
+
+    @PostMapping("/edit")
+    public String processEditForm(@Valid BookDTO bookDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "books/edit";
+        }
+
+        bookService.editBook(bookDTO);
         return "redirect:/admin/books/all";
     }
 }
