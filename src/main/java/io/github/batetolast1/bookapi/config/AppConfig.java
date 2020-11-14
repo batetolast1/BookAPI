@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.*;
 @EnableWebMvc
 @ComponentScan(basePackages = "io.github.batetolast1.bookapi")
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "io.github.batetolast1.bookapi.domain.repositories")
+@EnableJpaRepositories(basePackages = "io.github.batetolast1.bookapi.domain.dao")
 public class AppConfig implements WebMvcConfigurer {
 
     // configuring ViewResolver for @Controller

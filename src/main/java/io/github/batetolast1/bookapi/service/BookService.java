@@ -1,4 +1,4 @@
-package io.github.batetolast1.bookapi.services;
+package io.github.batetolast1.bookapi.service;
 
 import io.github.batetolast1.bookapi.dtos.BookDTO;
 

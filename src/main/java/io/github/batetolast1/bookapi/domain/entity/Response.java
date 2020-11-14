@@ -1,6 +1,6 @@
-package io.github.batetolast1.bookapi.domain.entities;
+package io.github.batetolast1.bookapi.domain.entity;
 
-import io.github.batetolast1.bookapi.domain.entities.enums.Status;
+import io.github.batetolast1.bookapi.domain.entity.enums.Status;
 
 public class Response<T> {
 

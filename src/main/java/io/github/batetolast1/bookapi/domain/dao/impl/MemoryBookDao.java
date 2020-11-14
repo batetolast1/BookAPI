@@ -1,7 +1,7 @@
-package io.github.batetolast1.bookapi.domain.repositories.impl;
+package io.github.batetolast1.bookapi.domain.dao.impl;
 
-import io.github.batetolast1.bookapi.domain.entities.Book;
-import io.github.batetolast1.bookapi.domain.repositories.BookRepository;
+import io.github.batetolast1.bookapi.domain.entity.Book;
+import io.github.batetolast1.bookapi.domain.dao.BookDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -13,14 +13,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class MemoryBookRepository implements BookRepository {
+public class MemoryBookDao implements BookDao {
 
-    private final Logger log = LoggerFactory.getLogger(MemoryBookRepository.class);
+    private final Logger log = LoggerFactory.getLogger(MemoryBookDao.class);
 
     private final List<Book> books;
     private Long id;
 
-    public MemoryBookRepository() {
+    public MemoryBookDao() {
         books = new ArrayList<>();
         id = 1L;
         initializeRepository();

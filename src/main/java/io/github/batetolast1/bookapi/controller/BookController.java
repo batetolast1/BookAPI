@@ -1,9 +1,9 @@
-package io.github.batetolast1.bookapi.controllers;
+package io.github.batetolast1.bookapi.controller;
 
-import io.github.batetolast1.bookapi.domain.entities.Response;
-import io.github.batetolast1.bookapi.domain.entities.enums.Status;
+import io.github.batetolast1.bookapi.domain.entity.Response;
+import io.github.batetolast1.bookapi.domain.entity.enums.Status;
 import io.github.batetolast1.bookapi.dtos.BookDTO;
-import io.github.batetolast1.bookapi.services.BookService;
+import io.github.batetolast1.bookapi.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

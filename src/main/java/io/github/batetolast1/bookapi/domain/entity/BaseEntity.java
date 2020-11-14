@@ -1,4 +1,4 @@
-package io.github.batetolast1.bookapi.domain.entities;
+package io.github.batetolast1.bookapi.domain.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

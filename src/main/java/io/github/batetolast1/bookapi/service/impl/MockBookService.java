@@ -1,10 +1,10 @@
-package io.github.batetolast1.bookapi.services.impl;
+package io.github.batetolast1.bookapi.service.impl;
 
-import io.github.batetolast1.bookapi.domain.entities.Book;
-import io.github.batetolast1.bookapi.domain.repositories.BookRepository;
+import io.github.batetolast1.bookapi.domain.entity.Book;
+import io.github.batetolast1.bookapi.domain.dao.BookDao;
 import io.github.batetolast1.bookapi.dtos.BookDTO;
-import io.github.batetolast1.bookapi.mappers.BookMapper;
-import io.github.batetolast1.bookapi.services.BookService;
+import io.github.batetolast1.bookapi.mapper.BookMapper;
+import io.github.batetolast1.bookapi.service.BookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +15,14 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class DefaultBookService implements BookService {
+public class MockBookService implements BookService {
 
-    private final Logger log = LoggerFactory.getLogger(DefaultBookService.class);
+    private final Logger log = LoggerFactory.getLogger(MockBookService.class);
 
-    private final BookRepository bookRepository;
+    private final BookDao bookRepository;
 
     @Autowired
-    public DefaultBookService(BookRepository bookRepository) {
+    public MockBookService(BookDao bookRepository) {
         this.bookRepository = bookRepository;
     }
 

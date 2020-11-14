@@ -1,6 +1,6 @@
-package io.github.batetolast1.bookapi.mappers;
+package io.github.batetolast1.bookapi.mapper;
 
-import io.github.batetolast1.bookapi.domain.entities.Book;
+import io.github.batetolast1.bookapi.domain.entity.Book;
 import io.github.batetolast1.bookapi.dtos.BookDTO;
 
 public class BookMapper {

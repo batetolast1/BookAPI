@@ -1,11 +1,11 @@
-package io.github.batetolast1.bookapi.domain.repositories;
+package io.github.batetolast1.bookapi.domain.dao;
 
-import io.github.batetolast1.bookapi.domain.entities.Book;
+import io.github.batetolast1.bookapi.domain.entity.Book;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface BaseRepository<T, ID> {
+public interface BaseDao<T, ID> {
 
     List<T> findAll();
 
