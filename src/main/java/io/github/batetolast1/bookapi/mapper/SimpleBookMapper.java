@@ -3,9 +3,9 @@ package io.github.batetolast1.bookapi.mapper;
 import io.github.batetolast1.bookapi.domain.entity.Book;
 import io.github.batetolast1.bookapi.dtos.BookDTO;
 
-public class BookMapper {
+public class SimpleBookMapper {
 
-    private BookMapper() {
+    private SimpleBookMapper() {
     }
 
     public static BookDTO toBookDTO(Book book) {

@@ -6,8 +6,6 @@ import io.github.batetolast1.bookapi.dtos.BookDTO;
 import io.github.batetolast1.bookapi.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +17,6 @@ import java.util.stream.Collectors;
 @Primary
 @RequiredArgsConstructor
 public class JpaBookService implements BookService {
-
-    private final Logger log = LoggerFactory.getLogger(JpaBookService.class);
 
     private final BookRepository bookRepository;
     private final ModelMapper modelMapper;
@@ -37,9 +33,7 @@ public class JpaBookService implements BookService {
     @Override
     public BookDTO saveNewBook(BookDTO bookDTO) {
         Book bookToSave = modelMapper.map(bookDTO, Book.class);
-
         Book savedBook = bookRepository.save(bookToSave);
-
         return modelMapper.map(savedBook, BookDTO.class);
     }
 
@@ -49,7 +43,6 @@ public class JpaBookService implements BookService {
 
         if (bookRepository.existsById(bookToEdit.getId())) {
             Book editedBook = bookRepository.save(bookToEdit);
-
             return modelMapper.map(editedBook, BookDTO.class);
         }
 
@@ -67,10 +60,12 @@ public class JpaBookService implements BookService {
     @Override
     public boolean deleteBookById(Long id) {
         Optional<Book> optionalBook = bookRepository.findById(id);
+
         if (optionalBook.isPresent()) {
             bookRepository.deleteById(id);
             return true;
         }
+
         return false;
     }
 }

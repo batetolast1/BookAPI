@@ -3,7 +3,7 @@ package io.github.batetolast1.bookapi.service.impl;
 import io.github.batetolast1.bookapi.domain.entity.Book;
 import io.github.batetolast1.bookapi.domain.dao.BookDao;
 import io.github.batetolast1.bookapi.dtos.BookDTO;
-import io.github.batetolast1.bookapi.mapper.BookMapper;
+import io.github.batetolast1.bookapi.mapper.SimpleBookMapper;
 import io.github.batetolast1.bookapi.service.BookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,27 +31,27 @@ public class MockBookService implements BookService {
         log.info("Converted all books to DTOs");
         return bookDao.findAll()
                 .stream()
-                .map(BookMapper::toBookDTO)
+                .map(SimpleBookMapper::toBookDTO)
                 .collect(Collectors.toList());
     }
 
     @Override
     public BookDTO saveNewBook(BookDTO bookDTO) {
         log.info("BookDTO to save: {}", bookDTO);
-        Book savedBook = bookDao.save(BookMapper.toBook(bookDTO));
-        return BookMapper.toBookDTO(savedBook);
+        Book savedBook = bookDao.save(SimpleBookMapper.toBook(bookDTO));
+        return SimpleBookMapper.toBookDTO(savedBook);
     }
 
     @Override
     public BookDTO editBook(BookDTO bookDTO) {
         log.info("BookDTO to edit: {}", bookDTO);
-        Book editedBook = bookDao.edit(BookMapper.toBook(bookDTO));
+        Book editedBook = bookDao.edit(SimpleBookMapper.toBook(bookDTO));
         if (editedBook == null) {
             log.debug("Book was not edited");
             return null;
         }
         log.info("Book successfully edited");
-        return BookMapper.toBookDTO(editedBook);
+        return SimpleBookMapper.toBookDTO(editedBook);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class MockBookService implements BookService {
         Optional<Book> optionalBook = bookDao.getById(id);
         if (optionalBook.isPresent()) {
             log.info("Book with id: {} is found", id);
-            return BookMapper.toBookDTO(optionalBook.get());
+            return SimpleBookMapper.toBookDTO(optionalBook.get());
         }
         log.debug("Book with id: {} is not found", id);
         return null;

@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "books")
@@ -13,10 +13,18 @@ import javax.validation.constraints.NotNull;
 @EqualsAndHashCode(callSuper = true, of = {})
 public class Book extends BaseEntity {
 
-    @NotNull
+    @NotBlank
     private String isbn;
+
+    @NotBlank
     private String title;
+
+    @NotBlank
     private String author;
+
+    @NotBlank
     private String publisher;
+
+    @NotBlank
     private String type;
 }
