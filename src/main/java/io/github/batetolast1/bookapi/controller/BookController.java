@@ -4,21 +4,17 @@ import io.github.batetolast1.bookapi.domain.entity.Response;
 import io.github.batetolast1.bookapi.domain.entity.enums.Status;
 import io.github.batetolast1.bookapi.dtos.BookDTO;
 import io.github.batetolast1.bookapi.service.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/books")
 public class BookController {
 
     private final BookService bookService;
-
-    @Autowired
-    public BookController(BookService bookService) {
-        this.bookService = bookService;
-    }
 
     @GetMapping("")
     public Response<List<BookDTO>> getAllBooks() {
