@@ -78,4 +78,16 @@ public class ManageBookController {
         bookService.editBook(bookDTO);
         return "redirect:/admin/books/all";
     }
+
+    @GetMapping("/details")
+    public String displayDetails(Model model, @RequestParam(name = "id") Long id) {
+        BookDTO bookDTO = bookService.getBookById(id);
+
+        if (bookDTO != null) {
+            model.addAttribute("bookDTO", bookDTO);
+            return "books/details";
+        }
+
+        return "redirect:/admin/books/all";
+    }
 }

@@ -32,7 +32,8 @@
                 <td><c:out value="${book.type}"/></td>
                 <td>
                     <a href="/admin/books/edit?id=<c:out value="${book.id}"/>">Edit</a>,
-                    <a href="/admin/books/confirm-delete?id=<c:out value="${book.id}"/>">Delete</a>
+                    <a href="/admin/books/confirm-delete?id=<c:out value="${book.id}"/>">Delete</a>,
+                    <a href="/admin/books/details?id=<c:out value="${book.id}"/>">Details</a>
                 </td>
             </tr>
         </c:forEach>
