@@ -1,30 +1,34 @@
 package io.github.batetolast1.bookapi.domain.entities;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@MappedSuperclass
+@Data
+@EqualsAndHashCode(of = "id")
 public class BaseEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "created_on", updatable = false)
     private LocalDateTime createdOn;
 
-    public BaseEntity(Long id) {
-        this.id = id;
-        createdOn = LocalDateTime.now();
+    @Column(name = "updated_on")
+    private LocalDateTime updatedOn;
+
+    @PrePersist
+    public void prePersist() {
+        this.createdOn = LocalDateTime.now();
+        this.updatedOn = null;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public LocalDateTime getCreatedOn() {
-        return createdOn;
-    }
-
-    public void setCreatedOn(LocalDateTime createdOn) {
-        this.createdOn = createdOn;
+    @PreUpdate
+    public void preUpdate() {
+        this.updatedOn = LocalDateTime.now();
     }
 }

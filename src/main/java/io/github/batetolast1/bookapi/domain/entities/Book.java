@@ -1,72 +1,22 @@
 package io.github.batetolast1.bookapi.domain.entities;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name = "books")
+@Data
+@EqualsAndHashCode(callSuper = true, of = {})
 public class Book extends BaseEntity {
 
+    @NotNull
     private String isbn;
     private String title;
     private String author;
     private String publisher;
     private String type;
-
-    public Book(Long id, String isbn, String title, String author, String publisher, String type) {
-        super(id);
-        this.isbn = isbn;
-        this.title = title;
-        this.author = author;
-        this.publisher = publisher;
-        this.type = type;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id='" + getId() + '\'' +
-                ", isbn='" + isbn + '\'' +
-                ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", publisher='" + publisher + '\'' +
-                ", type='" + type + '\'' +
-                ", createdOn='" + getCreatedOn() + '\'' +
-                '}';
-    }
 }

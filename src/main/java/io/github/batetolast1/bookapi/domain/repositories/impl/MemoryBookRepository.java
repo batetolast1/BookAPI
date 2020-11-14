@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,9 +28,29 @@ public class MemoryBookRepository implements BookRepository {
     }
 
     private void initializeRepository() {
-        save(new Book(null, "9788324631766", "Thinking in Java", "Bruce Eckel", "Helion", "programming"));
-        save(new Book(null, "9788324627738", "Rusz głową Java", "Sierra Kathy, Bates Bert", "Helion", "programming"));
-        save(new Book(null, "9780130819338", "Java 2. Podstawy", "Cay Horstmann, Gary Cornell", "Helion", "programming"));
+        Book book1 = new Book();
+        book1.setIsbn("9788324631766");
+        book1.setTitle("Thinking in Java");
+        book1.setAuthor("Bruce Eckel");
+        book1.setPublisher("Helion");
+        book1.setType("programming");
+        save(book1);
+
+        Book book2 = new Book();
+        book2.setIsbn("9788324627738");
+        book2.setTitle("Rusz głową Java");
+        book2.setAuthor("Sierra Kathy, Bates Bert");
+        book2.setPublisher("Helion");
+        book2.setType("programming");
+        save(book2);
+
+        Book book3 = new Book();
+        book3.setIsbn("9780130819338");
+        book3.setTitle("Java 2. Podstawy");
+        book3.setAuthor("Cay Horstmann, Gary Cornell");
+        book3.setPublisher("Helion");
+        book3.setType("programming");
+        save(book3);
     }
 
     @Override
@@ -42,6 +63,7 @@ public class MemoryBookRepository implements BookRepository {
     public Book save(Book book) {
         log.info("Book to save: {}", book);
         book.setId(id++);
+        book.setCreatedOn(LocalDateTime.now());
         books.add(book);
         log.info("Book successfully saved: {}", book);
         return book;
@@ -56,6 +78,7 @@ public class MemoryBookRepository implements BookRepository {
             log.info("Book with id: {} is found: {}", book.getId(), bookToEdit);
 
             int index = books.indexOf(bookToEdit);
+            book.setUpdatedOn(LocalDateTime.now());
             books.set(index, book);
 
             Book bookAfterEdit = books.get(index);
