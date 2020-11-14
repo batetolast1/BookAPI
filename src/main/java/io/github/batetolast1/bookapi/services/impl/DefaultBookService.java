@@ -5,8 +5,8 @@ import io.github.batetolast1.bookapi.domain.repositories.BookRepository;
 import io.github.batetolast1.bookapi.dtos.BookDTO;
 import io.github.batetolast1.bookapi.mappers.BookMapper;
 import io.github.batetolast1.bookapi.services.BookService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Service
 public class DefaultBookService implements BookService {
 
-    private final Logger log = LogManager.getLogger(DefaultBookService.class);
+    private final Logger log = LoggerFactory.getLogger(DefaultBookService.class);
 
     private final BookRepository bookRepository;
 

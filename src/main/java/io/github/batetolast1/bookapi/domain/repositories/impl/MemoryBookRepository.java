@@ -2,8 +2,8 @@ package io.github.batetolast1.bookapi.domain.repositories.impl;
 
 import io.github.batetolast1.bookapi.domain.entities.Book;
 import io.github.batetolast1.bookapi.domain.repositories.BookRepository;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.Optional;
 @Repository
 public class MemoryBookRepository implements BookRepository {
 
-    private final Logger log = LogManager.getLogger(MemoryBookRepository.class);
+    private final Logger log = LoggerFactory.getLogger(MemoryBookRepository.class);
 
     private final List<Book> books;
     private Long id;

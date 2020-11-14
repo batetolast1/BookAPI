@@ -1,6 +1,7 @@
 package io.github.batetolast1.bookapi;
 
 import io.github.batetolast1.bookapi.config.AppConfig;
+import io.github.batetolast1.bookapi.config.BeansConfig;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -15,7 +16,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{AppConfig.class};
+        return new Class[]{AppConfig.class, BeansConfig.class};
     }
 
     @Override
