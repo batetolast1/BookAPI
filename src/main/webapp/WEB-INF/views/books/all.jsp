@@ -4,8 +4,9 @@
 <html lang="en">
 <head>
     <title>Books list</title>
-    <meta name="viewport" content="width=device-width; initial-scale=1.0, maximum-scale=1.0"/>
-    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+
+    <c:import url="../fragments/head.jsp"/>
+
 </head>
 <body>
 

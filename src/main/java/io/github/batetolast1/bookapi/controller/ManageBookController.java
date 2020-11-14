@@ -6,10 +6,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -41,6 +41,18 @@ public class ManageBookController {
         }
 
         bookService.saveNewBook(bookDTO);
+        return "redirect:/admin/books/all";
+    }
+
+    @GetMapping("/confirm-delete")
+    public String confirmDelete(Model model, @RequestParam(name = "id") Long id) {
+        model.addAttribute("id", id);
+        return "books/delete";
+    }
+
+    @GetMapping("/delete")
+    public String processDelete(@RequestParam(name = "id") Long id) {
+        bookService.deleteBookById(id);
         return "redirect:/admin/books/all";
     }
 }
